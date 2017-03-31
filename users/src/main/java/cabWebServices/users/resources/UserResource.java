@@ -34,12 +34,6 @@ UserServices serviceProvider= new UserServices();
 		return serviceProvider.add(newUser);
 	}
 	
-	@Path("/trying")
-	@GET
-	public String justTry(){
-		return "dude!!";
-	}
-	
 	
 	@GET
 	public List<UserModel> getAllUsers(){
@@ -53,16 +47,5 @@ UserServices serviceProvider= new UserServices();
 		
 		String response= serviceProvider.talkToTripManager(location);
 		return response;
-	}
-
-	
-	//testing
-	
-	@Path("/test/{name}")
-	@GET
-	public String doIPC_Test(@PathParam("name") String name){
-		Client client = ClientBuilder.newClient();
-		String response= client.target("http://localhost:8081/tripManager/webapi/tripManager/testing/" + name).request(MediaType.APPLICATION_XML).get(new GenericType<String>(){});
-			return response;
 	}
 }
